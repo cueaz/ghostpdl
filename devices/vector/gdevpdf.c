@@ -421,14 +421,6 @@ pdf_initialize_ids(gx_device_pdf * pdev)
 
     param_string_from_string(nstr, "{DocInfo}");
     pdf_create_named_dict(pdev, &nstr, &pdev->Info, 0L);
-    {
-        char buf[PDF_MAX_PRODUCER];
-
-        pdf_store_default_Producer(buf);
-        if (pdev->CompatibilityLevel <= 1.7)
-            cos_dict_put_c_key_string(pdev->Info, "/Producer", (byte *)buf,
-                                  strlen(buf));
-    }
     /*
      * Acrobat Distiller sets CreationDate and ModDate to the current
      * date and time, rather than (for example) %%CreationDate from the
